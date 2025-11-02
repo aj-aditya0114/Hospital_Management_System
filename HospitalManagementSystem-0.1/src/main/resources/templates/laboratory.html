@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Laboratory | Hospital</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #95b8db;
+        }
+        .lab-header {
+            background: linear-gradient(135deg, #0d6efd, #6610f2);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            border-radius: 0 0 40px 40px;
+        }
+        .lab-card {
+            border-radius: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            color: white;
+        }
+        .lab-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        .form-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="lab-header">
+        <h1 class="fw-bold">Our Laboratory</h1>
+        <p class="lead">Advanced diagnostics & modern facilities to ensure accurate results.</p>
+    </div>
+
+    <div class="container my-5">
+        <div class="row g-4">
+
+            <!-- Laboratory Info -->
+            <div class="col-lg-4">
+                <div class="card shadow p-4 h-100" style="background-color: darkseagreen;">
+                    <h4 class="fw-bold mb-3 text-primary"><i class="bi bi-building"></i> Laboratory Info</h4>
+                    <p>Our hospital laboratory is equipped with the latest technology to provide fast and accurate test results.</p>
+                    <p><i class="bi bi-geo-alt-fill text-primary"></i> AHealth Lab, Jajpur, Odisha</p>
+                    <p><i class="bi bi-clock text-primary"></i> Open: Mon - Sat, 8 AM - 8 PM</p>
+                    <p><i class="bi bi-telephone-fill text-primary"></i> +91 7377331075</p>
+                </div>
+            </div>
+
+            <!-- Available Tests -->
+            <div class="col-lg-8">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="card lab-card shadow p-4 bg-gradient" style="background: rgb(37, 154, 193);">
+                            <h5 class="fw-bold">Blood Test</h5>
+                            <p>Comprehensive blood analysis for accurate diagnosis.</p>
+                            <span class="badge bg-light text-dark">₹500</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card lab-card shadow p-4 bg-gradient" style="background: #20c997;">
+                            <h5 class="fw-bold">X-Ray</h5>
+                            <p>High quality imaging with modern equipment.</p>
+                            <span class="badge bg-light text-dark">₹800</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card lab-card shadow p-4 bg-gradient" style="background: #ffc107;">
+                            <h5 class="fw-bold">MRI Scan</h5>
+                            <p>Advanced scanning for detailed internal imaging.</p>
+                            <span class="badge bg-light text-dark">₹3000</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card lab-card shadow p-4 bg-gradient" style="background: #e83e8c;">
+                            <h5 class="fw-bold">COVID-19 Test</h5>
+                            <p>Quick and reliable RT-PCR test for COVID detection.</p>
+                            <span class="badge bg-light text-dark">₹700</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Booking Form -->
+        <div class="row my-5" >
+            <div class="col-lg-8 mx-auto">
+                <div class="form-section" style="background-color: rgb(144, 236, 204);">
+                    <h4 class="fw-bold mb-4"><i class="bi bi-clipboard-check"></i> Book a Test</h4>
+                    <form th:action="@{/lab/bookTest}" th:object="${labBooking}" method="post">
+                        <div class="mb-3">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" th:field="*{name}" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Phone Number</label>
+                            <input type="text" th:field="*{phone}" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Select Test</label>
+                            <select th:field="*{testName}" class="form-select" required>
+                                <option value="">-- Choose a Test --</option>
+                                <option value="Blood Test">Blood Test</option>
+                                <option value="X-Ray">X-Ray</option>
+                                <option value="MRI Scan">MRI Scan</option>
+                                <option value="COVID-19 Test">COVID-19 Test</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Preferred Date</label>
+                            <input type="date" th:field="*{date}" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="bi bi-send-fill"></i> Confirm Booking
+                        </button>
+                    </form>
+
+                    <!-- Success message -->
+                    <div th:if="${successMsg}" class="alert alert-success mt-3" role="alert">
+                        <span th:text="${successMsg}"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

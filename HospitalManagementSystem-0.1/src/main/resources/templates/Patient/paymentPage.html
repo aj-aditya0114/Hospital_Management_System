@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns :th = "http://www.thymeleaf.org">
+<head>
+<meta charset = "ISO-8859-1">
+<title>Payment Page</title>
+
+</head>
+<body>
+	<h2>Pay Your Bill</h2>
+	<p>Bill Amount : ₹<span th:text="@{bill.amount}"></span></p>
+	
+	<form action="/payment/success" method="post">
+		<input type="hidden" name="billed" th:value="${bill.id}"/>
+		<input type="hidden" name="transactionId" value="TXN12345"/>
+		<button type="submit">Pay Now</button>
+	</form>
+	
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns :th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #6dd5ed, #2193b0);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .appointment-container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            max-width: 500px;
+            margin: 80px auto;
+        }
+        .appointment-container h2 {
+            color: #2193b0;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-control:focus {
+            border-color: #2193b0;
+            box-shadow: 0 0 5px rgba(33,147,176,0.5);
+        }
+        .btn-custom {
+            background: #2193b0;
+            color: white;
+            border-radius: 25px;
+            transition: 0.3s;
+        }
+        .btn-custom:hover {
+            background: #17697e;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="appointment-container">
+        <h2>📅 Book Your Appointment</h2>
+		
+        <form id="appointmentForm" th:action="@{/appointments/book}" method="post">
+            <div class="mb-3">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter your name">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Choose Doctor</label>
+                <!--<input type="email" class="form-control" id="email" placeholder="Enter your email">!-->
+				<select type="email" class="form-control" id="email" placeholder="Enter your email"name="doctorId" required>
+						<option th:each="doc : ${doctor}" 
+								th:value="${doc.id}" 
+								th:text="${doc.name + ' - ' + doc.speciality}">
+													
+						</option>
+				</select>
+				
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Date</label>
+                <input type="date" class="form-control" id="date">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Time</label>
+                <input type="time" class="form-control" id="time">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Reason</label>
+                <textarea class="form-control" id="reason" rows="3" placeholder="Enter reason for appointment"></textarea>
+            </div>
+            <button type="submit" class="btn btn-custom w-100">Book Now</button>
+        </form>
+    </div>
+
+	
+	
+    <script>
+        // Prevent selecting past dates
+        let today = new Date().toISOString().split('T')[0];
+        document.getElementById("date").setAttribute("min", today);
+
+        // Form validation and submission
+        document.getElementById("appointmentForm").addEventListener("submit", function(e){
+            e.preventDefault();
+
+            let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let date = document.getElementById("date").value;
+            let time = document.getElementById("time").value;
+            let reason = document.getElementById("reason").value.trim();
+
+            if(!name || !email || !date || !time || !reason){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please fill out all fields before booking!',
+                });
+                return;
+            }
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Appointment Booked!',
+                text: `Your appointment is confirmed for ${date} at ${time}.`,
+                confirmButtonColor: '#2193b0'
+            });
+
+            document.getElementById("appointmentForm").reset();
+        });
+    </script>
+
+</body>
+</html>

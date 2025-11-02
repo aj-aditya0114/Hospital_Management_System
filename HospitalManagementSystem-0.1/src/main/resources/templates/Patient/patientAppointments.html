@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Patient Appointments</title>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(to right, #e3f2fd, #ffffff);
+            padding: 20px;
+        }
+        h2 {
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #0d6efd;
+        }
+        table {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        thead {
+            background-color: #0d6efd;
+            color: white;
+        }
+        tbody tr:hover {
+            background-color: #f1faff;
+            transition: 0.3s;
+        }
+        .badge {
+            font-size: 0.9em;
+            padding: 0.5em;
+        }
+        .btn-custom {
+            background-color: #198754;
+            color: white;
+            border-radius: 20px;
+            padding: 5px 15px;
+        }
+        .btn-custom:hover {
+            background-color: #157347;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>My Appointments</h2>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle shadow-sm">
+            <thead>
+                <tr>
+                    <th>Doctor Name</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Reason</th>
+                    <th>Status</th>
+                    <th>Bill</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="appointment : ${appointments}">
+                    <td th:text="${appointment.doctor.name}">Dr. Name</td>
+                    <td th:text="${appointment.appointmentDate}">2025-08-01</td>
+                    <td th:text="${appointment.appointmentTime}">10:00</td>
+                    <td th:text="${appointment.reason}">Checkup</td>
+
+                    <!-- Status with badges -->
+                    <td>
+                        <span th:if="${appointment.status == 'PENDING'}" class="badge bg-warning text-dark">PENDING</span>
+                        <span th:if="${appointment.status == 'APPROVED'}" class="badge bg-success">APPROVED</span>
+                        <span th:if="${appointment.status == 'REJECTED'}" class="badge bg-danger">REJECTED</span>
+                    </td>
+
+                    <!-- Bill Button -->
+                    <td>
+                        <a th:if="${appointment.status == 'APPROVED'}" 
+                           th:href="@{'/doctor/generate-bill/' + ${appointment.id}}">
+                            <button class="btn btn-custom">Generate Bill</button>
+                        </a>
+                        <span th:if="${appointment.status != 'APPROVED'}" class="text-muted">N/A</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

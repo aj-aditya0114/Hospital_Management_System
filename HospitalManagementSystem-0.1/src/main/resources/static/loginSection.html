@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient and Doctor Page</title>
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('/Images/loginBg.jpg'); /* Replace with your image path */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .container {
+      display: flex;
+      height: 100vh;
+    }
+
+    .half {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 24px;
+    }
+
+    .patient {
+      background-color: rgba(52, 152, 219, 0.7);
+    }
+
+    .doctor {
+      background-color: rgba(46, 204, 113, 0.7);
+    }
+
+    .content-box {
+      text-align: center;
+      padding: 25px;
+      border: 2px solid white;
+      border-radius: 12px;
+      background: radial-gradient(circle, rgba(238, 174, 202, 1) 24%, rgba(148, 187, 233, 1) 89%);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Hover effects for card */
+    .content-box:hover {
+      transform: scale(1.08) rotateX(5deg) rotateY(5deg);
+      box-shadow: 0px 12px 25px rgba(255, 255, 255, 0.6), 
+                  0px 8px 20px rgba(0, 0, 0, 0.4);
+      cursor: pointer;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 12px 24px;
+      background-color: #2980b9;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .btn:hover {
+      background-color: #1f5a7d;
+      transform: translateY(-3px);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .container {
+        flex-direction: column;
+        height: auto;
+      }
+      .half {
+        height: 50vh;
+        font-size: 20px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .btn {
+        width: 80%;
+        padding: 14px;
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="half patient">
+      <div class="content-box">
+        <h2>Patient Section</h2>
+        <p>Welcome Again, Patient!</p>
+        <a href="loginPageP" class="btn">Login</a>
+      </div>
+    </div>
+    <div class="half doctor">
+      <div class="content-box">
+        <h2>Doctor Section</h2>
+        <p>Hello, Doctor!</p>
+        <a href="loginPageD" class="btn">Login</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "ISO-8859-1">
+<title>Insert the title here</title>
+<style>
+    body {
+      margin: 0;
+      background-color: #1a1a1a;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .modal {
+      background-color: #fffdf7;
+      width: 70%;
+      max-width: 900px;
+      padding: 30px;
+      border-radius: 25px;
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      border: 2px dotted #666;
+    }
+
+    .modal .close-btn {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      font-size: 20px;
+      font-weight: bold;
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: #333;
+    }
+
+    .modal-content {
+      width: 60%;
+    }
+
+    .modal-content h2 {
+      color: #15396b;
+      margin-top: 0;
+    }
+
+    .modal-content p {
+      font-size: 16px;
+      color: #333;
+      text-align: justify;
+      line-height: 1.6;
+    }
+
+    .modal-img {
+      width: 35%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-img img {
+      width: 100%;
+      max-width: 250px;
+      border-radius: 15px;
+      border: 2px solid #64a57c;
+      padding: 4px;
+    }
+  </style>
+</head>
+
+<body>
+	<div class="modal">
+		  <button class="close-btn" onclick="goBack()">&times;</button>
+
+		  <div class="modal-content">
+		    <h2>Company Overview</h2>
+		    <p>
+				SpeedCure is dedicated to providing quality healthcare to every citizen of Pakistan. This ambitious mission is driven by leveraging digital platforms, traditional channels, and hybrid delivery models, ensuring accessible care for all with just a click. We are committed to reaching our users through various channels, including online, B2B, B2B2C, and B2C.<br/><br/>
+
+				Conceived to alleviate both physical and metaphorical pain, HospitALL offers healthcare initiatives accessible in person through corporate engagement packages and remotely through digital means, ensuring excellence in patient care. Our goal is to provide a one-stop solution with a holistic wellness program, delivering premium standard, yet affordable and accessible healthcare and wellness solutions.<br/><br/>
+
+				Our solutions are gender-inclusive, women-focused, and all-encompassing, designed to make your organization stand out. As a digital healthcare platform accessible to everyone, HospitALL aims to bring quality healthcare to the doorstep of every individual in Pakistan within the next few years, providing:
+		    </p>
+		  </div>
+
+		  <div class="modal-img">
+		    <img src="Images/company.png" alt="Doctor writing on screen">
+		  </div>
+		</div>
+	
+		
+		<script>
+		  function goBack() {
+		    window.history.back();
+		  }
+		</script>
+</body>
+
+</html>

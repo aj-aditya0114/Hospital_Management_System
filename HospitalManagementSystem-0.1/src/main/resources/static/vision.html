@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "ISO-8859-1">
+<title>Insert the title here</title>
+<style>
+    body {
+      margin: 0;
+      background-color: #1a1a1a;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .modal {
+      background-color: #fffdf7;
+      width: 70%;
+      max-width: 900px;
+      padding: 30px;
+      border-radius: 25px;
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      border: 2px dotted #666;
+    }
+
+    .modal .close-btn {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      font-size: 20px;
+      font-weight: bold;
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: #333;
+    }
+
+    .modal-content {
+      width: 60%;
+    }
+
+    .modal-content h2 {
+      color: #15396b;
+      margin-top: 0;
+    }
+
+    .modal-content p {
+      font-size: 16px;
+      color: #333;
+      text-align: justify;
+      line-height: 1.6;
+    }
+
+    .modal-img {
+      width: 35%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-img img {
+      width: 100%;
+      max-width: 250px;
+      border-radius: 15px;
+      border: 2px solid #64a57c;
+      padding: 4px;
+    }
+  </style>
+</head>
+
+<body>
+	<div class="modal">
+		  <button class="close-btn" onclick="goBack()">&times;</button>
+
+		  <div class="modal-content">
+		    <h2>Our Vision</h2>
+		    <p>
+		      Our vision is to transform healthcare through innovation and technology, making more accessible,
+		      personalized and efficient. We focus on creating solutions that improve patient care,
+		      streamline operations and empower healthcare providers using data and emerging technologies.
+		      Our goal is to reshape the healthcare, enhancing the well-being of individuals and communities worldwide.
+		    </p>
+		  </div>
+
+		  <div class="modal-img">
+		    <img src="Images/vision.png" alt="Doctor writing on screen">
+		  </div>
+		</div>
+	
+		
+		<script>
+		  function goBack() {
+		    window.history.back();
+		  }
+		</script>
+</body>
+
+</html>

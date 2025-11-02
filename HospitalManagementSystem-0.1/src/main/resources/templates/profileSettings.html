@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile Settings</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(to right, #a8edea, #fed6e3);
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .settings-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform .2s ease-in-out;
+        }
+
+        .settings-card:hover {
+            transform: scale(1.02);
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #4bb7a9;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .save-btn {
+            background-color: #4bb7a9;
+            color: white;
+            border-radius: 25px;
+            padding: 10px 20px;
+            font-weight: bold;
+        }
+
+        .save-btn:hover {
+            background-color: #3b9e91;
+        }
+
+        @media (max-width: 768px) {
+            .settings-card {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container py-5">
+    <div class="text-center mb-4">
+        <h2>⚙️ Profile Settings</h2>
+        <p class="text-muted">Manage your personal information and account settings</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+            <div class="settings-card">
+
+                <!-- Profile Picture -->
+                <div class="text-center mb-4">
+                    <img th:src="@{/images/default-avatar.png}" alt="Profile Picture" class="avatar">
+                    <div class="mt-2">
+                        <input type="file" class="form-control form-control-sm w-50 mx-auto" accept="image/*">
+                    </div>
+                </div>
+
+                <!-- Settings Form -->
+                <form th:action="@{/profile/update}" method="post">
+                    <div class="mb-3">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" th:value="${patient.name}" name="name" class="form-control" placeholder="Enter your name" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" th:value="${patient.email}" name="email" class="form-control" placeholder="Enter your email" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Phone Number</label>
+                        <input type="text" th:value="${patient.phone}" name="phone" class="form-control" placeholder="Enter your phone number">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Date of Birth</label>
+                        <input type="date" th:value="${patient.dob}" name="dob" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Gender</label>
+                        <select class="form-select" name="gender">
+                            <option th:selected="${patient.gender == 'Male'}" value="Male">Male</option>
+                            <option th:selected="${patient.gender == 'Female'}" value="Female">Female</option>
+                            <option th:selected="${patient.gender == 'Other'}" value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Address</label>
+                        <textarea class="form-control" name="address" rows="2" placeholder="Enter your address" th:text="${patient.address}"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Change Password</label>
+                        <input type="password" name="password" class="form-control" placeholder="Enter new password">
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn save-btn">💾 Save Changes</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
